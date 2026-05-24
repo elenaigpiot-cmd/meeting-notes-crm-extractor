@@ -1,0 +1,184 @@
+{
+  "name": "Meeting Notes CRM Extractor",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "crm-extractor",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "f978401a-357b-4639-89cd-968eaa491db2",
+      "name": "Webhook",
+      "webhookId": "180977d7-65fa-4275-9762-f5fd0c9ed868"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "claude-sonnet-4-6",
+          "mode": "list",
+          "cachedResultName": "claude-sonnet-4-6"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=You are an expert sales operations assistant. \nYou will be given a raw meeting transcript from a B2B sales call.\n\nExtract the following and return ONLY valid JSON, no other text, no markdown:\n\n{\n  \"deal_name\": \"Name of the company or deal discussed\",\n  \"deal_stage\": \"One of: Discovery / Demo done / Proposal sent / Negotiating / Closed\",\n  \"next_steps\": [\n    {\"action\": \"what needs to happen\", \"owner\": \"who is responsible\", \"due\": \"timeframe mentioned or null\"}\n  ],\n  \"client_concerns\": [\"list of concerns or objections raised\"],\n  \"crm_note\": \"A 3-sentence professional summary ready to paste into a CRM\"\n}\n\nHere is the transcript:\n{{ $json.body.transcript }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.anthropic",
+      "typeVersion": 1,
+      "position": [
+        208,
+        0
+      ],
+      "id": "38fa28b2-214b-4c09-bd40-150570756fce",
+      "name": "Message a model",
+      "credentials": {
+        "anthropicApi": {
+          "id": "157X7TzdVTZUojzG",
+          "name": "Anthropic account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1EHPitoC2hfqCmw4KiolJkrFAntqdfpN0uBveiz6pmm0",
+          "mode": "list",
+          "cachedResultName": "CRM Extractor Demo",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EHPitoC2hfqCmw4KiolJkrFAntqdfpN0uBveiz6pmm0/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1EHPitoC2hfqCmw4KiolJkrFAntqdfpN0uBveiz6pmm0/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Date          ": "={{ $now.toFormat('yyyy-MM-dd') }}",
+            "Deal Name  ": "={{ JSON.parse($('Message a model').item.json.content[0].text.replace(/```json|```/g, '').trim()).deal_name }}",
+            "Deal Stage  ": "={{ JSON.parse($('Message a model').item.json.content[0].text.replace(/```json|```/g, '').trim()).deal_stage }}",
+            "Next Steps  ": "={{ JSON.parse($('Message a model').item.json.content[0].text.replace(/```json|```/g, '').trim()).next_steps.map(s => s.action + ' (' + s.owner + ')').join(', ') }}",
+            "CRM Note": "={{ JSON.parse($('Message a model').item.json.content[0].text.replace(/```json|```/g, '').trim()).crm_note }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Date          ",
+              "displayName": "Date          ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deal Name  ",
+              "displayName": "Deal Name  ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Deal Stage  ",
+              "displayName": "Deal Stage  ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Next Steps  ",
+              "displayName": "Next Steps  ",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "CRM Note",
+              "displayName": "CRM Note",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        560,
+        0
+      ],
+      "id": "0dc9e2c6-3afe-4e9e-b08d-c9452a526cbb",
+      "name": "Append row in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "Y066o0vQLCJDaH5k",
+          "name": "Google Sheets account 2"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Append row in sheet",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "bd822dc2-b68d-483e-9293-775b2c58d000",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "c560afd1ca9555d9c64e0268b6aeff421aa7fcd583d6a296da47fce87385e1a6"
+  },
+  "id": "QbUxrdUVveZ9llXQ",
+  "tags": []
+}
