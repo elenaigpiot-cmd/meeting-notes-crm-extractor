@@ -1,7 +1,7 @@
 # Meeting Notes → CRM Action Extractor
 > Built with n8n + Claude API (Anthropic) · Enterprise workflow automation
 
-**[▶ Watch the 90-second demo](#)** ← *(to add Loom link here after recording)* !!!
+**[▶ Watch the 90-second demo](https://www.loom.com/share/6ad97f520ece4053bd65a9bea2548941)**
 
 ---
 
