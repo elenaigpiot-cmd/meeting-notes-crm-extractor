@@ -1,0 +1,26 @@
+{
+  "deal_name": "Acme Corp",
+  "deal_stage": "Proposal sent",
+  "next_steps": [
+    {
+      "action": "Send security and compliance whitepaper",
+      "owner": "Sarah",
+      "due": "Friday"
+    },
+    {
+      "action": "Schedule follow-up call with CTO David Park",
+      "owner": "Sarah",
+      "due": "Next Tuesday 2pm CET"
+    },
+    {
+      "action": "Obtain CTO sign-off on budget and compliance",
+      "owner": "Lisa",
+      "due": "null"
+    }
+  ],
+  "client_concerns": [
+    "Data security and GDPR compliance",
+    "CTO sign-off required before deal can proceed"
+  ],
+  "crm_note": "Met with John Martinez and Lisa Chen at Acme Corp on May 24th. Client expressed strong interest following the demo but raised concerns around data security and GDPR compliance. Budget has been approved internally, however final sign-off from CTO David Park is still required before moving forward. Sarah committed to sending a security whitepaper by Friday, with a follow-up call scheduled for next Tuesday to address remaining questions and advance the deal."
+}
