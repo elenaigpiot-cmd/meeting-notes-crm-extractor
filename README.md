@@ -29,3 +29,23 @@ Paste in a raw meeting transcript → Claude extracts structured data → Google
 | 2026-05-24 | Acme Corp | Proposal sent | Send security whitepaper (Sarah), Obtain CTO sign-off (Lisa) | Met with John and Lisa at Acme Corp. Client expressed strong interest but raised GDPR concerns. CTO sign-off required before deal can proceed. |
 
 ## Architecture
+
+## Tech stack
+- **n8n** — workflow orchestration
+- **Anthropic Claude API** — transcript analysis and structured extraction
+- **Google Sheets** — CRM output layer
+- **Railway** — n8n hosting
+
+## How to run it yourself
+1. Import `Meeting Notes CRM Extractor.json` into your n8n instance
+2. Add your Anthropic API key as a credential
+3. Connect your Google Sheets account
+4. Create a sheet with headers: Date, Deal Name, Deal Stage, Next Steps, CRM Note
+5. Send a POST request to the webhook with `{"transcript": "your text here"}`
+
+## About this project
+Built as part of my AI engineering portfolio focused on Forward Deployed Engineer roles.
+
+I come from a business background. I start with where the friction is, what the client actually needs — and then I find the cleanest way to solve it with AI. This is me closing the gap.
+
+[LinkedIn](https://www.linkedin.com/in/elena-piot-crm/) · [GitHub](https://github.com/elenaigpiot-cmd)
