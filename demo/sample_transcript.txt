@@ -1,0 +1,14 @@
+Call with Acme Corp - May 24th, 2026
+Participants: Sarah (our team), John Martinez and Lisa Chen (Acme Corp)
+
+John opened by saying the demo last week was impressive and the team has been discussing it internally. However, they have two main concerns before moving forward.
+
+First, data security and GDPR compliance. Acme Corp operates across the EU and needs to ensure any AI tool handling client data meets their compliance requirements. John asked if we can provide documentation.
+
+Lisa mentioned the budget has been approved at board level but final sign-off needs to come from their CTO, David Park, who was not on this call.
+
+Sarah committed to sending a full security and compliance whitepaper by this Friday. She also suggested scheduling a follow-up call with David Park for next Tuesday at 2pm CET.
+
+John confirmed that if the security questions are answered satisfactorily, they are ready to move forward and sign the contract.
+
+Next call: Tuesday, May 28th, 2026 - 2pm CET
