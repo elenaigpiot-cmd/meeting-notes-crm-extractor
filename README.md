@@ -44,8 +44,6 @@ Paste in a raw meeting transcript → Claude extracts structured data → Google
 5. Send a POST request to the webhook with `{"transcript": "your text here"}`
 
 ## About this project
-Built as part of my AI engineering portfolio focused on Forward Deployed Engineer roles.
-
-I come from a business background. I start with where the friction is, what the client actually needs — and then I find the cleanest way to solve it with AI. This is me closing the gap.
+Built by Elena Piot, CRM and AI product leader. I come from the business side of CRM: I’ve owned client KPIs in luxury retail and led CRM programmes for global brands. I start with where front-line teams lose time, then build the simplest AI workflow that gives it back. 
 
 [LinkedIn](https://www.linkedin.com/in/elena-piot-crm/) · [GitHub](https://github.com/elenaigpiot-cmd)
