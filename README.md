@@ -17,6 +17,9 @@ Paste in a raw meeting transcript → Claude extracts structured data → Google
 - ✅ Client concerns and objections
 - ✅ Ready-to-paste CRM note
 
+## Where this applies
+Any front-office team that logs client meetings in a CRM: sales, client advisors, relationship managers. Less admin after each meeting, more time with clients.
+
 ## Demo
 
 **Input** — raw transcript:
