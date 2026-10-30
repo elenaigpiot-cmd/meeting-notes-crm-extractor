@@ -29,6 +29,7 @@ Paste in a raw meeting transcript → Claude extracts structured data → Google
 | 2026-05-24 | Acme Corp | Proposal sent | Send security whitepaper (Sarah), Obtain CTO sign-off (Lisa) | Met with John and Lisa at Acme Corp. Client expressed strong interest but raised GDPR concerns. CTO sign-off required before deal can proceed. |
 
 ## Architecture
+Webhook (transcript in) → Claude API (extracts deal, stage, next steps, concerns as structured JSON) → Google Sheets (logged as a CRM record)
 
 ## Tech stack
 - **n8n** — workflow orchestration
